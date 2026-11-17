@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex">
+<title>TikTok bağlantısı · Ne Alakaymış?</title>
+<link rel="stylesheet" href="../stil.css">
+</head>
+<body>
+<main>
+<!-- TikTok Login Kit yönlendirme adresi (HTTPS) için ara durak.
+     TikTok kullanıcıyı buraya ?code=...&state=... ile gönderir; sayfa aynı sorguyu kanal sahibinin bilgisayarındaki
+     yükleme aracına (http://localhost:5678) iletir. Sayfa hiçbir sunucuya istek atmaz; kod tarayıcıdan çıkmaz. -->
+  <h1>TikTok bağlantısı</h1>
+  <p id="m">Bu sayfa yalnızca Ne Alakaymış? yükleme aracının TikTok hesabına bağlanması sırasında kullanılır.</p>
+  <p class="en" lang="en">This page is only used as the OAuth redirect while connecting the Ne Alakaymış? upload tool to the channel's own TikTok account.</p>
+  <footer>
+    <a href="../index.html">Ana sayfa / Home</a>
+    <a href="../gizlilik.html">Gizlilik / Privacy</a>
+    <a href="../sartlar.html">Şartlar / Terms</a>
+  </footer>
+</main>
+<script>
+  var q = window.location.search;
+  if (q.indexOf('code=') !== -1 || q.indexOf('error=') !== -1) {
+    document.getElementById('m').textContent = 'TikTok bağlantısı bu bilgisayardaki yükleme aracına iletiliyor…';
+    window.location.replace('http://localhost:5678/webhook/tiktok-donus' + q);
+  }
+</script>
+</body>
+</html>
